@@ -1,0 +1,16 @@
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://database:database@mongo-psmdb-db-mongos.mongo.svc.cluster.local:27017/company?authSource=admin&readPreference=secondary
+
+
+# OTEL_EXPORTER_OTLP_TRACES_PROTOCOL=grpc
+# OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4317
+
+# OTEL_EXPORTER_OTLP_TRACES_PROTOCOL=http/protobuf
+# OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4318/v1/traces
+
+logging:
+  level:
+    root: INFO
