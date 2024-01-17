@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: springboot
-        image: springboot:test
+        image: rudwns273/springboot:01-18-00-20-29
         imagePullPolicy: Never
         ports:
         - containerPort: 8000
@@ -34,3 +34,7 @@ spec:
           value: "true"
         - name: OTEL_INSTRUMENTATION_COMMON_DB_STATEMENT_SANITIZER_ENABLED
           value: "false"
+        - name: LOG_LEVEL
+          value: "DEBUG"
+        - name: MONGODB_URL
+          value: "mongodb://database:database@mongo-psmdb-db-rs0.mongo.svc.cluster.local:27017/company?authSource=admin&readPreference=secondaryPreferred"
