@@ -1,0 +1,43 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'corretto'
+        java-version: '17'
+
+    - name: Build jar
+      run: |
+        ./demo/gradlew build -p demo -x test
+        cp demo/build/libs/demo.jar demo.jar
+    
+    - name: Login to Docker hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Set up Tag
+      run: echo "DOCKER_TAG=$(TZ=Asia/Seoul date +'%m-%d-%H-%M-%S')" >> $GITHUB_ENV
+
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: rudwns273/springboot:${{ env.DOCKER_TAG }}
