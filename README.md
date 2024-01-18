@@ -13,3 +13,10 @@ export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4317
 export OTEL_EXPORTER_OTLP_TRACES_PROTOCOL=http/protobuf
 export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4318/v1/traces
 ```
+
+### 엔드포인트 리스트
+```
+localshot:8080/one
+localshot:8080/all
+localshot:8080/all/batchsize100
+```
