@@ -34,11 +34,25 @@ public class DemoApplication {
         return "Number of MongoDB Documents: " + documents.size();
 	}
 
+	@RequestMapping("/all/batchsize100")
+	String allBatch100() {
+		// find all 쿼리
+		Query query = new Query();
+		query.cursorBatchSize(100);
+		List<String> documents = mongoTemplate.find(query, String.class, "employees");
+
+        // 조회된 문서 출력
+        // StringBuilder result = new StringBuilder("MongoDB Documents:\n");
+        // documents.forEach(document -> result.append(document).append("\n"));
+
+        return "Number of MongoDB Documents: " + documents.size();
+	}
+
 	@RequestMapping("/all")
 	String all() {
 		// find all 쿼리
 		Query query = new Query();
-		query.cursorBatchSize(100);
+		// query.cursorBatchSize(100);
 		List<String> documents = mongoTemplate.find(query, String.class, "employees");
 
         // 조회된 문서 출력
