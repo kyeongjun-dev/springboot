@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: springboot
-        image: rudwns273/springboot:01-18-00-20-29
+        image: rudwns273/springboot:01-18-12-16-11
         imagePullPolicy: Always
         # imagePullPolicy: Never
         ports:
@@ -28,7 +28,7 @@ spec:
         - name: OTEL_METRICS_EXPORTER
           value: "none"
         - name: OTEL_SERVICE_NAME
-          value: "demo"
+          value: "springboot"
         - name: OTEL_TRACES_EXPORTER
           value: "otlp"
         - name: OTEL_EXPORTER_OTLP_INSECURE
